@@ -22,18 +22,10 @@ const productRoutes = require('./routes/products');
 require('./configs/database');
 require('./configs/passport');
 
-require("dotenv").config();
-
+require('dotenv').config();
 mongoose.connect(process.env.MONGODB_URI);
 
 var app = express();
-app.use(cors({
-  credentials:true,
-  origin: ['http://localhost:4200']
-}));
-
-//Socket Conection
-
 
 
 // view engine setup
@@ -61,9 +53,9 @@ app.use(passport.session());
 
 
 
-app.use('/', authRoutes);
-app.use('/products', productRoutes);
-
+app.use('/', index);
+// app.use('/products', productRoutes);
+//
 
 
 
