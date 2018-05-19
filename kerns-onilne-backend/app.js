@@ -7,7 +7,6 @@ const bodyParser         = require('body-parser');
 const expressLayouts     = require('express-ejs-layouts');
 const mongoose           = require('mongoose');
 const passport           = require('passport');
-const cors               = require('cors');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const LocalStrategy      = require('passport-local').Strategy;
@@ -16,7 +15,6 @@ const multer             = require('multer');
 const User               = require('./models/user');
 const Product            = require('./models/products');
 const Quotes       = require('./models/quotes');
-const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 const productRoutes = require('./routes/products');
 require('./configs/database');
@@ -26,6 +24,7 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGODB_URI);
 
 var app = express();
+app.listen(4200);
 
 
 // view engine setup
@@ -53,9 +52,9 @@ app.use(passport.session());
 
 
 
-app.use('/', index);
-// app.use('/products', productRoutes);
-//
+app.use('/', authRoutes);
+
+
 
 
 
